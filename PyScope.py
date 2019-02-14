@@ -1,5 +1,6 @@
 import logging
 
+from FileLoader import FileLoader
 
 class PyScope(object):
 
@@ -11,13 +12,10 @@ class PyScope(object):
         self.logger.setLevel(logging.DEBUG)
         # self.logger.setLevel(logging.WARNING)
 
-        self.base_dir = ''
 
-    def set_files_dir(self):
-
-
-    def load_file(self):
-        self.logger.debug('In File Load')
+        self.file_loader = FileLoader()
+        #self.file_loader.set_files_dir()
 
 
-    def load_all_files_from_dir(self):
+
+xml_pyscope = PyScope()
