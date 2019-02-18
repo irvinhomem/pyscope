@@ -4,7 +4,7 @@ import os
 from tkinter import filedialog
 
 
-class LoadSettings(object):
+class PyScopeSettings(object):
 
     def __init__(self):
         # Logging Parameters

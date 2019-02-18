@@ -1,7 +1,7 @@
 import logging
 
 from FileLoader import FileLoader
-from LoadSettings import LoadSettings
+from PyScopeSettings import PyScopeSettings
 
 class PyScope(object):
 
@@ -14,8 +14,8 @@ class PyScope(object):
         # self.logger.setLevel(logging.WARNING)
 
 
-        self.settings = LoadSettings()
-        #self.file_loader = FileLoader()
+        self.settings = PyScopeSettings()
+        self.file_loader = FileLoader(self.settings.raw_files_dir)
         #self.file_loader.set_files_dir()
 
 
