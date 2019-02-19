@@ -17,6 +17,7 @@ class PyScope(object):
         self.settings = PyScopeSettings()
         self.file_loader = FileLoader(self.settings.raw_files_dir)
         #self.file_loader.set_files_dir()
+        self.file_loader.combine_xml_files_to_single()
 
 
 

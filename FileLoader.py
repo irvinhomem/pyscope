@@ -2,6 +2,8 @@ import logging
 from tkinter import filedialog
 import pathlib
 import os
+from XMLCombiner import XMLCombiner
+import glob
 #from PyScopeSettings import PyScopeSettings
 #from PyScope import PyScope
 
@@ -32,9 +34,18 @@ class FileLoader(object):
         files_list = os.listdir(self.raw_files_dir)
         self.logger.debug('Number of files in DIR: --> %d' % len(files_list))
 
+    def get_file_paths_list(self):
+        return
+
     def get_file(self):
         self.logger.debug('In File Load')
         #return file_object = open(self.raw_files_dir)
 
     def load_all_files_from_dir(self):
         return
+
+    def combine_xml_files_to_single(self):
+        #xml_file_paths = os.listdir(self.raw_files_dir)
+        xml_file_paths_list = glob.glob(self.raw_files_dir + '/*.xml')
+        self.logger.debug('Print List of filenames: %s' % xml_file_paths_list)
+        combined_XML_data = XMLCombiner(xml_file_paths_list).combine()
