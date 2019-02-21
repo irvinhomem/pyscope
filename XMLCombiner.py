@@ -12,6 +12,7 @@ class XMLCombiner(object):
         self.logger.setLevel(logging.DEBUG)
         # self.logger.setLevel(logging.WARNING)
 
+        self.file_path_list = filenames
         assert len(filenames) > 0, 'No filenames!'
 
         try:
@@ -58,3 +59,15 @@ class XMLCombiner(object):
                     mapping[el.tag] = el
                     # Just add it
                     one.append(el)
+
+    def combine_all_text(self):
+        all_content = ''
+        for file_path in self.file_path_list:
+            with open(file_path, 'r') as file_read:
+                all_content += file_read.read()
+
+    def collect(self):
+        with open(self.file_path_list[0], 'r') as file_read:
+            all_content = file_read.read()
+
+        all_xml = et.fromstring(all_content)

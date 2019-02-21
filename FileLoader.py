@@ -4,6 +4,8 @@ import pathlib
 import os
 from XMLCombiner import XMLCombiner
 import glob
+from WazuhRules import WazuhRules
+from Parser import Parser
 #from PyScopeSettings import PyScopeSettings
 #from PyScope import PyScope
 
@@ -48,4 +50,10 @@ class FileLoader(object):
         #xml_file_paths = os.listdir(self.raw_files_dir)
         xml_file_paths_list = glob.glob(self.raw_files_dir + '/*.xml')
         self.logger.debug('Print List of filenames: %s' % xml_file_paths_list)
-        combined_XML_data = XMLCombiner(xml_file_paths_list).combine()
+
+        #combined_XML_data = XMLCombiner(xml_file_paths_list).combine_all_text()
+        #combined_XML_data = XMLCombiner(xml_file_paths_list).collect()
+        #combined_XML_data = XMLCombiner(xml_file_paths_list).combine()
+        wazuhrule_files_in_one = WazuhRules(xml_file_paths_list).combine_into_single_file()
+        wazuh_xml_parser = Parser(wazuhrule_files_in_one)
+        wazuh_xml_parser.parse_wazuh_XML()
