@@ -55,5 +55,24 @@ class FileLoader(object):
         #combined_XML_data = XMLCombiner(xml_file_paths_list).collect()
         #combined_XML_data = XMLCombiner(xml_file_paths_list).combine()
         wazuhrule_files_in_one = WazuhRules(xml_file_paths_list).combine_into_single_file()
-        wazuh_xml_parser = Parser(wazuhrule_files_in_one)
-        wazuh_xml_parser.parse_wazuh_XML()
+
+        # Write all files into a single file
+        self.write_to_output_dir(wazuhrule_files_in_one)
+
+        # Parse the XML content
+        #wazuh_xml_parser = Parser(wazuhrule_files_in_one)
+        #wazuh_xml_parser.parse_wazuh_XML()
+
+    def write_to_output_dir(self, data_to_write):
+        dirName = os.getcwd() + '/output/'
+        if not os.path.exists(dirName):
+            os.mkdir(dirName)
+            self.logger.info('Directory %s Created' % dirName)
+        else:
+            self.logger.info('Directory %s already exists' % dirName)
+
+        writeloc = dirName + '/combined_output.xml'
+        file_write = open(writeloc, 'w+')
+        file_write.write(data_to_write)
+
+

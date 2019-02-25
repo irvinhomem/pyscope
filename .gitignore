@@ -161,3 +161,6 @@ venv.bak/
 /config/
 /venv-pyscope/
 /Files_to_Parse/
+/.idea/
+/test.py
+/output/

@@ -21,6 +21,8 @@ class WazuhRules(object):
                 self.logger.debug('TYPE: %s' %(type(my_wazuh_rule_file)))
                 all_content += my_wazuh_rule_file.read()
 
-        well_formed_agg_xml_string = '<rules>' + all_content + '</rules>'
-        #print(well_formed_xml_string)
+        well_formed_agg_xml_string = '<rules>\n' + all_content + '</rules>'
+        #well_formed_agg_xml_string = all_content
+        self.logger.debug('All Wazuh Rules in ONE: %s' % well_formed_agg_xml_string)
+
         return well_formed_agg_xml_string
